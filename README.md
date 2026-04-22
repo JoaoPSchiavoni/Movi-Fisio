@@ -27,7 +27,7 @@ MoviFisio is a modern backend system designed for physiotherapy clinics. It prov
 
 1. **Clone the repository**:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/JoaoPSchiavoni/Movi-Fisio
    cd MoviFisio
    ```
 
