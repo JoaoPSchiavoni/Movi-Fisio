@@ -1,6 +1,7 @@
-from fastapi import APIRouter
-from src.models import User, db
-from sqlalchemy.orm import sessionmaker
+from fastapi import APIRouter, Depends
+from src.models import User
+from src.dependencies import get_db
+
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
@@ -10,9 +11,7 @@ async def read_auth():
 
 
 @router.post("/register")
-async def register(email:str, password:str, name:str, cpf:str, phone:str, lgpd_accepted:bool):
-    Session = sessionmaker(bind=db)
-    session = Session()
+async def register(email:str, password:str, name:str, cpf:str, phone:str, lgpd_accepted:bool, session = Depends(get_db)):
     user = session.query(User).filter(User.email == email).first()
     if user:
         return {"error": "User already exists"}

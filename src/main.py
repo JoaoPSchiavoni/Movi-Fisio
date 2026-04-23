@@ -1,7 +1,7 @@
 from pydantic._internal import _forward_ref
 from fastapi import FastAPI
-from .auth_routes import router as auth_router
-from .schedule_routes import router as schedule_router
+from src.auth_routes import router as auth_router
+from src.schedule_routes import router as schedule_router
 
 app = FastAPI()
 
