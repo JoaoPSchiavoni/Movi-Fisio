@@ -13,3 +13,9 @@ class UserSchema(BaseModel):
 class LoginSchema(BaseModel):
     email: EmailStr
     password: str
+
+class ScheduleSchema(BaseModel):
+    user_id: int
+    service_id: int
+    date: str
+    time: str
