@@ -30,12 +30,20 @@ async def register(user_data: UserSchema, session: Session = Depends(get_db)):
     except Exception as e:
         session.rollback()
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
-
+        
 @router.post("/login")
 async def login(user_data: LoginSchema, session: Session = Depends(get_db)):
     user = session.query(User).filter(User.email == user_data.email).first()
-    if not user:
+    #TODO verificar senha
+    if user is None:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid credentials")
+    elif user.active == False:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid credentials")
+    elif user.is_admin == True:
+        pass
+    elif user.is_admin == False:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid credentials")
+    
     # if not check_password(user_data.password, user.password):
     #     raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid credentials")
     token = create_token(user)
