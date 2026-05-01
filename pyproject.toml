@@ -16,8 +16,8 @@ dependencies = [
     "python-multipart (>=0.0.26,<0.0.27)",
     "alembic (>=1.18.4,<2.0.0)",
     "sqlalchemy-utils (>=0.42.1,<0.43.0)",
-    "bcrypt (>=5.0.0,<6.0.0)",
-    "pydantic[email] (>=2.13.3,<3.0.0)"
+    "pydantic[email] (>=2.13.3,<3.0.0)",
+    "pwdlib[argon2] (>=0.3.0,<0.4.0)"
 ]
 
 [tool.poetry]
